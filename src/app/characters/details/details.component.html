@@ -1,0 +1,53 @@
+<div class="row">
+    <div class="col-12 mb-50">
+        <a href="">⟸ Back</a>
+    </div>    
+</div>
+
+<div class="row mb-30">
+    <div class="col-xl-2 col-md-2">
+        <img [src]="avatar" class="rounded-image">
+    </div>
+    <div class="col-xl-10 col-md-10">
+        <h1 class="no-margin">{{ character?.name }}</h1>
+        <h3>Last update: {{ character?.modified | date:'medium' }}</h3>
+        <ul>
+            <ng-container *ngFor="let event of character.events.items;">
+                <li>{{ event.name }}</li>
+            </ng-container>
+        </ul>
+    </div>
+</div>
+
+<div class="row mb-30">
+    <div class="col-xl-12 col-md-12">
+        <h2>Comics</h2>
+        <ul>
+            <ng-container *ngFor="let comic of character.comics.items;">
+                <li>{{ comic.name }}</li>
+            </ng-container>
+        </ul>
+    </div>
+</div>
+
+<div class="row mb-30">
+    <div class="col-xl-12 col-md-12">
+        <h2>Series</h2>
+        <ul>
+            <ng-container *ngFor="let serie of character.series.items;">
+                <li>{{ serie.name }}</li>
+            </ng-container>
+        </ul>
+    </div>
+</div>
+
+<div class="row mb-30">
+    <div class="col-xl-12 col-md-12">
+        <h2>Stories</h2>
+        <ul>
+            <ng-container *ngFor="let story of character.stories.items;">
+                <li>{{ story.name }}</li>
+            </ng-container>
+        </ul>
+    </div>
+</div>

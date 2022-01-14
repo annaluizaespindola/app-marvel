@@ -1,0 +1,43 @@
+<div class="row">
+    <div class="col-xl-10 col-md-10">
+        <h2>Characters from Marvel</h2>
+    </div>
+</div>
+
+<mat-card>
+    <mat-table [dataSource]="dataSource" matSort matSortActive="index" matSortDirection="asc">
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+        <mat-row (click)="redirectTo(character?.id)" *matRowDef="let row; columns: displayedColumns; let character;"></mat-row>
+
+        <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>#</mat-header-cell>
+            <mat-cell *matCellDef="let character">{{ character?.id }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="thumbnail">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Photo</mat-header-cell>
+            <mat-cell *matCellDef="let character">{{ character?.name }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
+            <mat-cell *matCellDef="let character">{{ character?.name }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="series">
+            <mat-header-cell class="mat-column-series" *matHeaderCellDef mat-sort-header>Series</mat-header-cell>
+            <mat-cell class="mat-column-series" *matCellDef="let character">{{ returnSeries(character?.series?.items) }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="modified">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Modified</mat-header-cell>
+            <mat-cell *matCellDef="let character">{{ character?.modified | date:'medium' }}
+            </mat-cell>
+        </ng-container>
+
+    </mat-table>
+
+    <mat-paginator class="pagination-list" [length]="count" #paginator [pageSizeOptions]="[10, 20, 30, 40, 50, 100]" [pageSize]="10" (page)="getPage($event)" showFirstLastButtons></mat-paginator>
+</mat-card>
